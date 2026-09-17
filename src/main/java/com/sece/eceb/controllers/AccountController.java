@@ -2,6 +2,8 @@ package com.sece.eceb.controllers;
 
 
 import com.sece.eceb.dto.Account;
+import com.sece.eceb.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,28 +15,25 @@ import java.util.List;
 @RestController
 public class AccountController {
 
-    // collections
-    // list map, graph
+    // 2 ways
 
-    // 1) Hello World -
-    // whenever you are getting data from server - mostly get
+    @Autowired
+    AccountService accountService;
+
     @GetMapping("/")
     public String helloWorld(){
         return "Hello World";
     }
 
-    ArrayList<Account> accounts = new ArrayList<>();
 
     @PostMapping("/account")
     public Account createAccount(@RequestBody Account account){
-        //save to database
-        accounts.add(account);
-        return account;
+        return accountService.createAccount(account);
     }
 
     @GetMapping("/account")
     public List<Account> getAccount(){
-        return accounts;
+        return accountService.getAccount();
     }
 
 
