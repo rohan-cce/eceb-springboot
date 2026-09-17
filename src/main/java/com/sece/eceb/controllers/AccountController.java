@@ -5,6 +5,7 @@ import com.sece.eceb.dto.Account;
 import com.sece.eceb.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,11 @@ public class AccountController {
     @GetMapping("/account")
     public List<Account> getAccount(){
         return accountService.getAccount();
+    }
+
+    @GetMapping("/account/{:id}")
+    public Account getAccount(@PathVariable Long id){
+        return accountService.getAccount(id);
     }
 
 
