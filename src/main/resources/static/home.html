@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New page</title>
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<h1>Accounts Dashboard</h1>
+<p><br></p>
+<h3>Add Account</h3>
+<p><br></p>
+<form id="addForm">
+    <br>
+    <label class="">Name : </label>
+    <input id="name" class="">
+    <br>
+    <label class="">Phone Number : </label>
+    <input id="phonenumber" class="">
+    <br>
+    <button>create</button>
+</form>
+<script>
+document.getElementById('addForm').onsubmit = (event) =>
+{
+    fetch('/account',
+         {
+            method:'POST',
+            headers: { "Content-Type": "application/json"},
+                body:{
+                        "name": document.getElementById('name').value,
+                        "phoneNumber":document.getElementById('phonenumber').value
+
+                    }
+          })
+</script>
+
+</body>
+</html>
