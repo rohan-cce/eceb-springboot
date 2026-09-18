@@ -4,13 +4,15 @@ package com.sece.eceb.controllers;
 import com.sece.eceb.dto.Account;
 import com.sece.eceb.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,7 +31,17 @@ public class AccountController {
 
     @PostMapping("/account")
     public Account createAccount(@RequestBody Account account){
+        // 19. Input Validation Example
+        if (account.getName() == null) {
+            throw new RuntimeException("Account name is required");
+        }
         return accountService.createAccount(account);
+    }
+
+    // 20. Exception Handling Example
+    @ExceptionHandler(RuntimeException.class)
+    public String handleError(RuntimeException e) {
+        return e.getMessage();
     }
 
     @GetMapping("/account")
@@ -37,12 +49,20 @@ public class AccountController {
         return accountService.getAccount();
     }
 
-    @GetMapping("/account/{:id}")
+    @GetMapping("/account/{id}")
     public Account getAccount(@PathVariable Long id){
         return accountService.getAccount(id);
     }
 
+    @PutMapping("/account/{id}")
+    public Account updateAccount(@PathVariable Long id, @RequestBody Account account){
+        return accountService.updateAccount(id, account);
+    }
 
+    @DeleteMapping("/account/{id}")
+    public void deleteAccount(@PathVariable Long id){
+        accountService.deleteAccount(id);
+    }
 }
 
 

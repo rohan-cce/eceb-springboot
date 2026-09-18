@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Accounts</title>
+</head>
+<body>
+    <h1>Accounts Dashboard</h1>
+    
+    <h3>Add Account</h3>
+    <form id="addForm">
+        <label>Name:</label>
+        <input id="name" type="text" required>
+        <br><br>
+        <label>Phone:</label>
+        <input id="phone" type="text" required>
+        <br><br>
+        <button type="submit">Add</button>
+    </form>
+    
+    <hr>
+    
+    <h3>All Accounts</h3>
+    <table border="1" id="accountTable">
+        <!-- We will inject rows via javascript here -->
+    </table>
+
+    <!-- Javascript is loaded from a separate file -->
+    <script src="app.js"></script>
+</body>
+</html>

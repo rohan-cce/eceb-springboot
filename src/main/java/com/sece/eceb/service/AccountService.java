@@ -27,5 +27,14 @@ public class AccountService {
         return accountRepository.findById(id).get();
     }
 
+    public Account updateAccount(Long id, Account account){
+        Account existing = accountRepository.findById(id).orElseThrow(() -> new RuntimeException("Account not found"));
+        if (account.getName() != null) existing.setName(account.getName());
+        if (account.getPhoneNumber() != null) existing.setPhoneNumber(account.getPhoneNumber());
+        return accountRepository.save(existing);
+    }
 
+    public void deleteAccount(Long id){
+        accountRepository.deleteById(id);
+    }
 }
