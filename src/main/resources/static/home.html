@@ -29,12 +29,17 @@ document.getElementById('addForm').onsubmit = (event) =>
          {
             method:'POST',
             headers: { "Content-Type": "application/json"},
-                body:{
+                body: JSON.stringify({
                         "name": document.getElementById('name').value,
                         "phoneNumber":document.getElementById('phonenumber').value
 
-                    }
+                    })
           })
+          .then(response => response.json())
+          .then(data => {
+              console.log(data);
+          });
+    }
 </script>
 
 </body>
